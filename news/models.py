@@ -1,4 +1,8 @@
+import datetime as dt
 from django.db import models
+
+
+
 
 # Create your models here.
 
@@ -32,3 +36,20 @@ class Article(models.Model):
     pub_date = models.DateField(auto_now_add=True)
     # article_image = models.ImageField(upload_to = 'articles/')
 
+    def __str__(self):
+        return self.title
+    @classmethod
+    def todays_news(cls):
+        today = dt.date.today()
+        news = cls.objects.filter(pub_date__date = today)
+        return news
+    
+    @classmethod
+    def days_news(cls,date):
+        news = cls.objects.filter(pub_date__date = date)
+        return news
+    
+    # @classmethod
+    # def search_by_title(cls,search_term):
+    #     news = cls.objects.filter(title__icontains=search_term)
+    #     return news
