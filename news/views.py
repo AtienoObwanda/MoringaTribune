@@ -1,3 +1,4 @@
+from email import message
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
 import datetime as dt
@@ -17,9 +18,16 @@ def convertDates(dates):
     return day
 
 # Create your views here.
-def welcome(request):
-    # return HttpResponse('Welcome to the Moringa Tribune by AtienoObwanda')
-    return render(request, 'index.html')
+def searchResult(request):
+    if 'article' in request.GET and request.GET["article"]:
+        search_term = request.GET.get("article")
+        searched_articles = Article.search_by_title(search_term)
+        message = f"{search_term}"
+        return render(request, 'allNews/search.html',{"message":message,"articles": searched_articles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'allNews/search.html',{"message":message})
     
 def newsOfToday(request):
     date = dt.date.today()
