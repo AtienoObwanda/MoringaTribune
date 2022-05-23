@@ -10,8 +10,9 @@ urlpatterns = [
     path('',views.newsOfToday, name="newsOfToday"),
     path('/archives/(\d{4}-\d{2}-\d{2})/', views.Pastnews, name = 'pastNews'),
     path('search',views.searchResult, name="searchResults"),
-    path('article/(\d+)',views.article, name="article"),
-
+    # path(r'^article/(\d+)',views.article,name ='article'),
+    # path('article/', views.Article, name="article"),
+    path('article/<int:article_id>/', views.article, name="article"),
 
 
 ]
