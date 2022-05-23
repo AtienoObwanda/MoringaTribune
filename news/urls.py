@@ -10,6 +10,8 @@ urlpatterns = [
     path('',views.newsOfToday, name="newsOfToday"),
     path('/archives/(\d{4}-\d{2}-\d{2})/', views.Pastnews, name = 'pastNews'),
     path('search',views.searchResult, name="searchResults"),
+    path('article/(\d+)',views.article, name="article"),
+
 
 
 ]

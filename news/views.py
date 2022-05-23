@@ -1,6 +1,7 @@
 from email import message
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
+from django.core.exceptions import ObjectDoesNotExist
 import datetime as dt
 
 from .models import Article
@@ -48,3 +49,9 @@ def Pastnews(request, pastDate):
     news = Article.days_news(date)
     return render(request, 'allNews/pastNews.html',{"date": date, "news":news})
 
+def article(request, article_id):
+    try:
+        article = Article.objects.get(id=article_id)
+    except Article.DoesNotExist:
+        raise Http404()
+    return render(request, 'allNews/article.html', {"article": article})
