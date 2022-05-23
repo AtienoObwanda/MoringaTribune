@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
 import datetime as dt
 
+from .models import Article
+
+
 
 # Getting the day of the week
 def convertDates(dates):
@@ -20,8 +23,9 @@ def welcome(request):
     
 def newsOfToday(request):
     date = dt.date.today()
+    news = Article.todays_news()
     
-    return render(request, 'allNews/today.html', {"date": date,})
+    return render(request, 'allNews/today.html', {"date": date, "news":news})
 
 def Pastnews(request, pastDate):
     try:
@@ -33,6 +37,6 @@ def Pastnews(request, pastDate):
         assert False
     if date == dt.date.today():
         return redirect(newsOfToday)
-
-    return render(request, 'allNews/pastNews.html',{"date": date})
+    news = Article.days_news(date)
+    return render(request, 'allNews/pastNews.html',{"date": date, "news":news})
 
