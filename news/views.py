@@ -20,18 +20,8 @@ def welcome(request):
     
 def newsOfToday(request):
     date = dt.date.today()
-    # Function that converts date object to find day:
-    day = convertDates(date) 
-    html = f'''
-        <html>
-            <body>
-                <h1> Moringa Tribune</h1>
-                <h3>News for {day} {date.day}-{date.month}-{date.year}</h3>
-                <h6>by AtienoObwanda </h6>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
+    
+    return render(request, 'allNews/today.html',{"date": date,})
 
 def Pastnews(request, pastDate):
     try:
