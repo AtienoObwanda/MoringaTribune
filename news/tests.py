@@ -11,3 +11,8 @@ class EditorTestClass(TestCase):
 # Testing  instance
     def test_instance(self):
         self.assertTrue(isinstance(self.atieno,Editor))
+
+    def test_save_method(self):
+        self.atieno.save_editor()
+        editors = Editor.objects.all()
+        self.assertTrue(len(editors) > 0)
