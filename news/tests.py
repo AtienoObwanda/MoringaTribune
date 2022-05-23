@@ -6,3 +6,8 @@ class EditorTestClass(TestCase):
     # Set up method
     def setUp(self):
         self.atieno=Editor(firstName='Atieno', lastName='Obwanda',email='atienoobwanda@gmail.com',phone_number='0743068355')
+
+
+# Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.atieno,Editor))
