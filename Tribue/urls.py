@@ -22,6 +22,6 @@ urlpatterns = [
     # configured the url
     path('',views.welcome, name="homepage"),
     path('news/',views.newsOfToday, name="newsOfToday"),
-    path('news/(\d{4}-\d{2}-\d{2})/',views.Pastnews, name = 'pastNews'),
+    path('archives/(\d{4}-\d{2}-\d{2})/',views.Pastnews, name = 'pastNews'),
 
 ]
