@@ -15,13 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from news import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # configured the url
-    path('',views.welcome, name="homepage"),
-    path('news/',views.newsOfToday, name="newsOfToday"),
-    path('archives/(\d{4}-\d{2}-\d{2})/',views.Pastnews, name = 'pastNews'),
-
+    path('',include('news.urls')),
+    
 ]

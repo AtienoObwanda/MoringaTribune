@@ -21,7 +21,7 @@ def welcome(request):
 def newsOfToday(request):
     date = dt.date.today()
     
-    return render(request, 'allNews/today.html',{"date": date,})
+    return render(request, 'allNews/today.html', {"date": date,})
 
 def Pastnews(request, pastDate):
     try:
