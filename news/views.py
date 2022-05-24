@@ -11,14 +11,14 @@ from .models import Article
 
 
 # Getting the day of the week
-def convertDates(dates):
-    # Converts date to a day of the week
-    dayNumber = dt.date.weekday(dates)
+# def convertDates(dates):
+#     # Converts date to a day of the week
+#     dayNumber = dt.date.weekday(dates)
 
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] 
-# Returning the actual day of the week
-    day = days[dayNumber]
-    return day
+#     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] 
+# # Returning the actual day of the week
+#     day = days[dayNumber]
+#     return day
 
 # Create your views here.
 def searchResult(request):
