@@ -8,7 +8,7 @@ urlpatterns = [
     # configured the url
     # path('welcome',views.welcome, name="homepage"),
     path('',views.newsOfToday, name="newsOfToday"),
-    path('archives/<int:pastDate>', views.Pastnews, name = 'pastNews'),
+    path('archives/<pastDate>', views.Pastnews, name = 'pastNews'),
     path('search',views.searchResult, name="searchResults"),
     path('article/<int:article_id>/', views.article, name="article"),
 
