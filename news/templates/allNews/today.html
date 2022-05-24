@@ -1,25 +1,62 @@
 {%extends 'allNews/base.html'%}
 
-{% block content %} 
+{% block content %}
 {{ block.super}}
 
-<div class="container">
-
-  <!-- Looping through news   -->
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+<div class="container ">
   {% for news_item in news %}
-    <!-- displaying News articles -->
-    <a href="{% url 'article' news_item.id %} "><h2 class="text-center"> {{ news_item.title }} </h2></a>      
-    <p class="text-center">{{news_item.post|truncatechars:200}} </p>
-    {% empty %}
-      <h2 class="text-center">There No News Items</h2>
-    <!-- Looping through news end   -->
-    {% endfor %}
+
+  <div class="card p-3 mb-4">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="position-relative snipimage">
+          <img src="{{news_item.article_image.url}}" class="rounded img-fluid w-100 img-responsive">
+          <span class="position-absolute user-timing">5 min read</span>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="mt-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'article' news_item.id %} " style="text-decoration: none;">
+              <h5 class="mb-1" style="color: #fff; font-weight: bold;">{{ news_item.title }} </h5>
+            </a> </br>
+
+            <!-- <span><i class="fa fa-heart text-danger"></i> </span> -->
+          </div>
+          <div class="d-flex justify-content-md-start justify-content-between views-content mt-2">
+            <div class="d-flex flex-row align-items-center">
+              <i class="fa fa-eye"></i>
+              <a href="{% url 'article' news_item.id %}" style="text-decoration: none;">
+                <p class="text-left" style="color: #fff;">{{news_item.post|truncatechars:200}} </p>
+              </a>
+
+            </div>
+
+          </div>
+          <div class="d-flex flex-row mt-3">
+
+            <img src="https://i.imgur.com/rvQ3LAt.jpg" width="50" class="rounded-circle">
+            <div class="ms-2 d-flex flex-column">
+              <div class="d-flex flex-row align-items-center">
+                <h6>{{news_item.editor.firstName}}</h6>
+                <span class="dots"></span>
+              </div>
+              <span class="days-ago">{{news_item.pub_date|timesince}} ago</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-  
   </div>
+  {% empty %}
+  <h2 class="text-center">There No News Items</h2>
+  <!-- Looping through news end   -->
+  {% endfor %}
+
+
 </div>
+
 
 {% endblock %}

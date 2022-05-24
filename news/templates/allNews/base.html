@@ -20,7 +20,24 @@
 <body>
     {% include "navbar.html" %}
 
-    {% block content %} <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1> {%endblock%}
+    {% block content %} 
+    <div class="container-fluid" style="margin-bottom:-3em;">
+      <div class="bg text-center">
+        <div class="card-img-overlay">
+        <img src="https://blogvolution.herokuapp.com/static/images/read.png" class="img-responsive w-100" style="height: 300px;">
+        <!--Div for Centered Text & Input--> 
+      <div class="container">
+        <div class="centered" style="margin-top:-3em">
+           <p class="firstLine" style="font-weight: bold; font-size: 38px;"> 
+            M &nbsp; O &nbsp; R &nbsp; I &nbsp; N &nbsp; G &nbsp; A &nbsp; ~  T &nbsp; R &nbsp; I &nbsp; B &nbsp; U &nbsp; N &nbsp; E &nbsp; </p>
+         
+          <p class="secondLine">{{date|date:"l d-F Y"}}</p>
+        </div>
+      </div> 
+    </div>
+    </div>
+      <!-- <h1 class='text-center mb-4' style="color: #1e1c2a; font-weight: bold;">News for {{date|date:"l d-F Y"}}</h1>  -->
+    {%endblock%}
 
     {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
