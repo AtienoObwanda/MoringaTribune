@@ -21,10 +21,9 @@
     {% include "navbar.html" %}
 
     {% block content %} 
-    <div class="container-fluid" style="margin-bottom:-3em;">
+    <div class="container-fluid" style="margin-bottom:4em;">
       <div class="bg text-center">
-        <div class="card-img-overlay">
-        <img src="https://blogvolution.herokuapp.com/static/images/read.png" class="img-responsive w-100" style="height: 300px;">
+        <img src="https://blogvolution.herokuapp.com/static/images/read.png" class="img-responsive w-100" style="height: 370px;">
         <!--Div for Centered Text & Input--> 
       <div class="container">
         <div class="centered" style="margin-top:-3em">
@@ -34,7 +33,6 @@
           <p class="secondLine">{{date|date:"l d-F Y"}}</p>
         </div>
       </div> 
-    </div>
     </div>
       <!-- <h1 class='text-center mb-4' style="color: #1e1c2a; font-weight: bold;">News for {{date|date:"l d-F Y"}}</h1>  -->
     {%endblock%}
