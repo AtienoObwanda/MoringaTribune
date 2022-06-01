@@ -8,6 +8,7 @@ import datetime as dt
 
 from .models import *
 from .forms import *
+from .email import *
 
 
 # Getting the day of the week
@@ -46,8 +47,9 @@ def newsOfToday(request):
             email = nform.cleaned_data['email']
             Subscriber =  Subscribers(name = name, email = email)
             Subscriber.save()
+            send_welcome_email(name, email)
             HttpResponseRedirect('newsOfToday')
-            print('valid')
+            # print('valid')
         else:
             nform=NewsLetterForm()
 
