@@ -1,6 +1,6 @@
 from email import message
 from django.shortcuts import render, redirect
-from django.http  import HttpResponse, Http404
+from django.http  import HttpResponse, Http404, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView
 
@@ -42,6 +42,11 @@ def newsOfToday(request):
 
     if request.method == 'POST':
         if nform.is_valid():
+            name = nform.cleaned_data['name']
+            email = nform.cleaned_data['email']
+            Subscriber =  Subscribers(name = name, email = email)
+            Subscriber.save()
+            HttpResponseRedirect('newsOfToday')
             print('valid')
         else:
             nform=NewsLetterForm()
