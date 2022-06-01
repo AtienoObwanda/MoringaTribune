@@ -12,7 +12,7 @@ urlpatterns = [
     path('search',views.searchResult, name="searchResults"),
     path('article/<int:article_id>/', views.article, name="article"),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('new/article$', views.new_article, name='new-article'),
+    path('new/article', views.new_article, name='new-article'),
 
 ]
 if settings.DEBUG:
