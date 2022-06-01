@@ -26,7 +26,7 @@ urlpatterns = [
     path('',include('news.urls')),
     path('logout/', LogoutView.as_view(), {'next_page': '/'}),
     # path('accounts/', include('registration.backends.simple.urls')),
-
+    path ('tinymce/', include('tinymce.urls'))
     # path('logout/', auth_views.LogoutView.as_view(), {"next_page": '/'}),
     
 ]
