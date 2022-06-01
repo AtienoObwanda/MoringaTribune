@@ -36,18 +36,18 @@ def newsOfToday(request):
 
     date = dt.date.today()
     news = Article.todays_news()
+    nform = NewsLetterForm(request.POST)
 
     # Adding the form:
 
     if request.method == 'POST':
-        form =NewsLetterForm(request.POST)
-        if form.is_valid():
+        if nform.is_valid():
             print('valid')
         else:
-            form=NewsLetterForm()
+            nform=NewsLetterForm()
 
     
-    return render(request, 'allNews/today.html', {"date": date, "news":news, "nForm": form})
+    return render(request, 'allNews/today.html', {"date": date, "news":news, "nForm": nform})
 
 def Pastnews(request, pastDate):
     try:
