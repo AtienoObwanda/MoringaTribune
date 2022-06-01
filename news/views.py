@@ -84,5 +84,15 @@ def article(request,article_id):
 #     # return render(request, 'allNews/article.html', {'article': article})
 
 @login_required(login_url='/accounts/login/')
-def new_article(request, article_id):
-    pass
+def new_article(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.editor = current_user
+            article.save()
+        return redirect('NewsOfToday')
+    else:
+        form = NewArticleForm()
+    return render(request, 'news', new_article.html,{"form": form})
