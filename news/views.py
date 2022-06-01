@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
+
 
 import datetime as dt
 
@@ -80,3 +82,7 @@ def article(request,article_id):
 #     model = Article
 #     template_name = 'allNews/article.html'
 #     # return render(request, 'allNews/article.html', {'article': article})
+
+@login_required(login_url='/accounts/login/')
+def new_article(request, article_id):
+    pass

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,7 +11,8 @@ urlpatterns = [
     path('archives/<pastDate>', views.Pastnews, name = 'pastNews'),
     path('search',views.searchResult, name="searchResults"),
     path('article/<int:article_id>/', views.article, name="article"),
-
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('new/article$', views.new_article, name='new-article'),
 
 ]
 if settings.DEBUG:
