@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'news',
     'django_bootstrap5',
     'tinymce',
+    'rest_framework',
 
 
 ]
