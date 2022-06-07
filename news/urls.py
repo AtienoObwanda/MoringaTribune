@@ -13,6 +13,7 @@ urlpatterns = [
     path('article/<int:article_id>/', views.article, name="article"),
     path('accounts/', include('registration.backends.simple.urls')),
     path('new/article', views.new_article, name='new-article'),
+    path('api/merch/', views.MerchList.as_view())
 
 ]
 if settings.DEBUG:

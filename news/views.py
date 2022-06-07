@@ -4,13 +4,18 @@ from django.http  import HttpResponse, Http404, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
+from rest_framework import status
 
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 import datetime as dt
 
 from .models import *
 from .forms import *
 from .email import *
+from .serializer import MerchSerializer
 
 
 # Getting the day of the week
@@ -81,7 +86,6 @@ def article(request,article_id):
 # class ArticleDetailView(DetailView):
 #     model = Article
 #     template_name = 'allNews/article.html'
-#     # return render(request, 'allNews/article.html', {'article': article})
 
 @login_required(login_url='/accounts/login/')
 def new_article(request):
@@ -96,3 +100,17 @@ def new_article(request):
     else:
         form = NewArticleForm()
     return render(request, 'news', new_article.html,{"form": form})
+
+
+class MerchList(APIView): # inherits from the APIView class.
+    def get (self, request, format=None):
+        all_merch = MoringaMerch.objects.all() # query the database to get all the MoringaMerchobjects. 
+        serializers = MerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = MerchSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
